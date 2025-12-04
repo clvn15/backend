@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const gallerySchema = new mongoose.Schema(
+const GallerySchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     url: { type: String, required: true },
@@ -8,4 +8,4 @@ const gallerySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Gallery", gallerySchema);
+export default mongoose.models.Gallery || mongoose.model("Gallery", GallerySchema);

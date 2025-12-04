@@ -2,11 +2,12 @@ import mongoose from "mongoose";
 
 const ProgramSchema = new mongoose.Schema(
   {
-    nama: String,
-    deskripsi: String,
-    gambar: String,
+    nama: { type: String, required: true },
+    deskripsi: { type: String, required: true },
+    gambar: { type: String, default: "" }
   },
   { timestamps: true }
 );
 
-export default mongoose.models.Program || mongoose.model("Program", ProgramSchema);
+export default mongoose.models.Program ||
+  mongoose.model("Program", ProgramSchema);
