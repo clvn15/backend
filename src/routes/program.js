@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
       nama,
       deskripsi,
       gambar: gambar || "",
-      tanggal: tanggal ? new Date(tanggal) : null // <-- tambahan tanggal
+      tanggal: tanggal ? new Date(tanggal) : null
     });
 
     res.status(201).json(created);
@@ -67,7 +67,7 @@ router.put("/:id", async (req, res) => {
         ...(nama && { nama }),
         ...(deskripsi && { deskripsi }),
         ...(gambar && { gambar }),
-        ...(tanggal !== undefined && { tanggal: tanggal ? new Date(tanggal) : null }) // <-- tambahan tanggal
+        ...(tanggal !== undefined && { tanggal: tanggal ? new Date(tanggal) : null })
       },
       { new: true }
     );
