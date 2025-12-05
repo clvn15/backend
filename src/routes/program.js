@@ -21,7 +21,8 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const program = await Program.findById(req.params.id);
-    if (!program) return res.status(404).json({ error: "Program tidak ditemukan" });
+    if (!program)
+      return res.status(404).json({ error: "Program tidak ditemukan" });
 
     res.json(program);
   } catch (err) {
@@ -34,7 +35,7 @@ router.get("/:id", async (req, res) => {
 // =========================
 router.post("/", async (req, res) => {
   try {
-    const { nama, deskripsi, gambar } = req.body;
+    const { nama, deskripsi, gambar, tanggal } = req.body;
 
     if (!nama || !deskripsi)
       return res.status(400).json({ error: "Nama & deskripsi wajib diisi" });
@@ -42,7 +43,8 @@ router.post("/", async (req, res) => {
     const created = await Program.create({
       nama,
       deskripsi,
-      gambar: gambar || ""
+      gambar: gambar || "",
+      tanggal: tanggal ? new Date(tanggal) : null // <-- tambahan tanggal
     });
 
     res.status(201).json(created);
@@ -57,14 +59,15 @@ router.post("/", async (req, res) => {
 // =========================
 router.put("/:id", async (req, res) => {
   try {
-    const { nama, deskripsi, gambar } = req.body;
+    const { nama, deskripsi, gambar, tanggal } = req.body;
 
     const updated = await Program.findByIdAndUpdate(
       req.params.id,
       {
         ...(nama && { nama }),
         ...(deskripsi && { deskripsi }),
-        ...(gambar && { gambar })
+        ...(gambar && { gambar }),
+        ...(tanggal !== undefined && { tanggal: tanggal ? new Date(tanggal) : null }) // <-- tambahan tanggal
       },
       { new: true }
     );

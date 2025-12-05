@@ -4,7 +4,8 @@ const ProgramSchema = new mongoose.Schema(
   {
     nama: { type: String, required: true },
     deskripsi: { type: String, required: true },
-    gambar: { type: String, default: "" }
+    gambar: { type: String, default: "" },
+    tanggal: { type: Date, default: null }
   },
   { timestamps: true }
 );

@@ -1,6 +1,5 @@
 import Program from "../models/Program.js";
 
-
 export const createProgram = async (req, res) => {
   try {
     const program = await Program.create(req.body);
@@ -10,7 +9,6 @@ export const createProgram = async (req, res) => {
   }
 };
 
-
 export const getPrograms = async (req, res) => {
   try {
     const programs = await Program.find().sort({ createdAt: -1 });
@@ -19,7 +17,6 @@ export const getPrograms = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
 export const getProgramById = async (req, res) => {
   try {
@@ -39,7 +36,6 @@ export const updateProgram = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
 export const deleteProgram = async (req, res) => {
   try {
